@@ -1,2 +1,4 @@
+.dart_tool/
 example/ios/Podfile.lock
 example/pubspec.lock
+
