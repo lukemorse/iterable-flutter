@@ -61,11 +61,7 @@ void main() {
     expect(calledMethod, <Matcher>[
       isMethodCall(
         'initialize',
-        arguments: {
-          apiKey: apiKey,
-          pushIntegrationName: pushIntegrationName,
-          activeLogDebug: false
-        },
+        arguments: {apiKey: apiKey, pushIntegrationName: pushIntegrationName, activeLogDebug: false},
       ),
     ]);
   });
@@ -136,16 +132,15 @@ void main() {
       pushData = openedResultMap;
     });
 
-    await ServicesBinding.instance?.defaultBinaryMessenger
-        .handlePlatformMessage(
-            'iterable_flutter',
-            const StandardMethodCodec().encodeMethodCall(
-              const MethodCall(
-                'openedNotificationHandler',
-                {keyBody: contentBody},
-              ),
-            ),
-            (ByteData? data) {});
+    await ServicesBinding.instance.defaultBinaryMessenger.handlePlatformMessage(
+        'iterable_flutter',
+        const StandardMethodCodec().encodeMethodCall(
+          const MethodCall(
+            'openedNotificationHandler',
+            {keyBody: contentBody},
+          ),
+        ),
+        (ByteData? data) {});
 
     expect(contentBody, pushData[keyBody]);
   });
@@ -167,14 +162,9 @@ void main() {
         expect(result['body'], 'test');
         expect(result['additionalData']['keyNumber'] as int, 1);
         expect(result['additionalData']['keyMap']['keyMap2'], 'value2');
-        expect(
-            result['additionalData']['keyMapChild']['keyMapChild3']
-                ['keyMapChild32'],
-            'value3');
-        expect(
-            result['additionalData']['itbl']['isGhostPush'] as bool, isFalse);
-        expect(result['additionalData']['itbl']['defaultAction']['type'],
-            'openApp');
+        expect(result['additionalData']['keyMapChild']['keyMapChild3']['keyMapChild32'], 'value3');
+        expect(result['additionalData']['itbl']['isGhostPush'] as bool, isFalse);
+        expect(result['additionalData']['itbl']['defaultAction']['type'], 'openApp');
       });
     });
 
@@ -188,14 +178,9 @@ void main() {
           expect(result['body'], 'test');
           expect(result['additionalData']['keyNumber'] as int, 1);
           expect(result['additionalData']['keyMap']['keyMap2'], 'value2');
-          expect(
-              result['additionalData']['keyMapChild']['keyMapChild3']
-                  ['keyMapChild32'],
-              'value3');
-          expect(
-              result['additionalData']['itbl']['isGhostPush'] as bool, isFalse);
-          expect(result['additionalData']['itbl']['defaultAction']['type'],
-              'openApp');
+          expect(result['additionalData']['keyMapChild']['keyMapChild3']['keyMapChild32'], 'value3');
+          expect(result['additionalData']['itbl']['isGhostPush'] as bool, isFalse);
+          expect(result['additionalData']['itbl']['defaultAction']['type'], 'openApp');
         });
       });
 
@@ -208,14 +193,9 @@ void main() {
           expect(result['body'], 'test');
           expect(result['additionalData']['keyNumber'] as int, 1);
           expect(result['additionalData']['keyMap']['keyMap2'], 'value2');
-          expect(
-              result['additionalData']['keyMapChild']['keyMapChild3']
-                  ['keyMapChild32'],
-              'value3');
-          expect(
-              result['additionalData']['itbl']['isGhostPush'] as bool, isFalse);
-          expect(result['additionalData']['itbl']['defaultAction']['type'],
-              'openApp');
+          expect(result['additionalData']['keyMapChild']['keyMapChild3']['keyMapChild32'], 'value3');
+          expect(result['additionalData']['itbl']['isGhostPush'] as bool, isFalse);
+          expect(result['additionalData']['itbl']['defaultAction']['type'], 'openApp');
         });
       });
     });
