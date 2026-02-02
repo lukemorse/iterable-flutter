@@ -75,6 +75,7 @@ public class SwiftIterableFlutterPlugin: NSObject, FlutterPlugin, UNUserNotifica
     
     private func initialize(_ apiKey: String, _ pushIntegrationName: String){
         let config = IterableConfig()
+        config.allowedProtocols = ["http", "tel", "iterable"]
         config.pushIntegrationName = pushIntegrationName
         config.autoPushRegistration = true
         config.customActionDelegate = self

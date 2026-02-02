@@ -1,14 +1,13 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_config/flutter_config.dart';
+// import 'package:flutter_config/flutter_config.dart';
 import 'package:iterable_flutter/iterable_flutter.dart';
 import 'package:iterable_flutter_example/second_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Required by FlutterConfig
-  await FlutterConfig.loadEnvVariables();
+  // await FlutterConfig.loadEnvVariables();
 
   runApp(MaterialApp(
     title: "App",
@@ -30,15 +29,15 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> initIterable() async {
-    final apiKey = FlutterConfig.get('ITERABLE_API_KEY');
-    final pushIntegrationName = Platform.isAndroid
-        ? FlutterConfig.get('ITERABLE_PUSH_INTEGRATION_NAME_ANDROID')
-        : FlutterConfig.get('ITERABLE_PUSH_INTEGRATION_NAME_IOS');
+    // final apiKey = FlutterConfig.get('ITERABLE_API_KEY');
+    // final pushIntegrationName = Platform.isAndroid
+    //     ? FlutterConfig.get('ITERABLE_PUSH_INTEGRATION_NAME_ANDROID')
+    //     : FlutterConfig.get('ITERABLE_PUSH_INTEGRATION_NAME_IOS');
 
-    return await IterableFlutter.initialize(
-      apiKey: apiKey,
-      pushIntegrationName: pushIntegrationName,
-    );
+    // return await IterableFlutter.initialize(
+    //   apiKey: apiKey,
+    //   pushIntegrationName: pushIntegrationName,
+    // );
   }
 
   /// Don't set an email and user ID in the same session.
