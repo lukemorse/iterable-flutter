@@ -1,3 +1,21 @@
+## 0.7.0
+- feat(iOS): add Swift Package Manager support. CocoaPods is still supported; apps do not need to
+  change anything.
+- **Breaking**: minimum Flutter version is now 3.44, required by the Swift package's
+  `FlutterFramework` dependency.
+- refactor(iOS): sources moved to `ios/iterable_flutter/Sources/iterable_flutter/` and the
+  Objective-C shim was removed (Swift Package Manager targets cannot mix Objective-C and Swift).
+- **Breaking (native only)**: the Swift class `SwiftIterableFlutterPlugin` is now
+  `IterableFlutterPlugin`. A deprecated `SwiftIterableFlutterPlugin` typealias is kept for source
+  compatibility. The Dart API is unchanged.
+- build(Android): migrate to the declarative Flutter Gradle plugin, AGP 9 and Gradle 9. The library
+  now declares a `namespace`, targets Java 17, and raises `minSdk` from 16 to 24. An explicit
+  `androidx.appcompat:appcompat:1.7.0` was added because `iterableapi` pulls in a 1.0.0 version whose
+  transitive artifacts fail the AGP 8+ manifest merger.
+- ci: workflows now run Flutter 3.44.8 instead of 2.8.1, which could not build this package at all.
+- The example app was updated to build again: iOS deployment target 16.0, the same Android Gradle
+  migration, a newer `firebase-messaging`, and the unused `flutter_config` dependency removed.
+
 ## 0.5.9
 - Update README with no longer maintaining message
 

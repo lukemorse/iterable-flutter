@@ -23,17 +23,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.8.1'
+          flutter-version: '3.44.8'
           channel: 'stable'
           cache: true
-          cache-key: flutter # optional, change this to force refresh cache
-          cache-path: ${{ runner.tool_cache }}/flutter # optional, change this to specify the cache path
 
       - name: Install dependencies
         run: flutter pub get
 
       - name: Run tests
-        run: flutter test
+        # There are no Dart tests yet (test/ only holds factories), and `flutter test` exits
+        # non-zero when it finds none. Run it only once some exist.
+        run: |
+          if find test -name '*_test.dart' -print -quit | grep -q .; then
+            flutter test
+          else
+            echo "No *_test.dart files under test/ - skipping."
+          fi

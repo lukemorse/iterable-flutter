@@ -65,6 +65,35 @@ class _MyAppState extends State<MyApp> {
 
 5. Track your events and optional data fields, call `IterableFlutter.track` method.
 
+## iOS dependency management
+
+The iOS plugin ships both a Swift package (`ios/iterable_flutter/Package.swift`) and a podspec
+(`ios/iterable_flutter.podspec`), so it works with either dependency manager. Both pin the same
+Iterable iOS SDK version.
+
+- **Swift Package Manager** — enabled by default. Nothing to do in your app; `flutter build ios`
+  picks it up.
+- **CocoaPods** — used automatically when Swift Package Manager is off
+  (`flutter config --no-enable-swift-package-manager`).
+
+This plugin requires **Flutter 3.44 or newer**. Its Swift package depends on `FlutterFramework`,
+which the Flutter tool only generates from 3.44 onwards.
+
+The plugin's minimum iOS deployment target is **16.0**. With CocoaPods a lower app target is only a
+warning, but Swift Package Manager treats it as an error, so set `IPHONEOS_DEPLOYMENT_TARGET` to at
+least 16.0 in your Xcode project.
+
+Expect one harmless build message: a deployment-target warning from `IterableSDK`, whose own
+`Package.swift` still declares iOS 10. Xcode raises it automatically.
+
+#### Consuming via a local `path:` dependency
+
+Flutter names the Swift package symlink after the plugin's **checkout directory**. If that directory
+is named exactly `iterable-flutter`, it collides with this package's library product
+(`iterable-flutter`) and Xcode fails with `unable to override package 'iterable_flutter'`. Clone into
+a directory named `iterable_flutter` instead. Git and pub.dev dependencies are unaffected — their
+cache directories carry a commit or version suffix.
+
 ### Example
 
 Check the [example/](example/) folder to see an example project using this library.

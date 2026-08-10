@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'iterable_flutter'
-  s.version          = '0.6.2'
+  s.version          = '0.7.0'
   s.summary          = 'Flutter implementation for iterable.com Cross Channel Marketing Platform'
   s.description      = <<-DESC
   Flutter implementation for iterable.com Cross Channel Marketing Platform
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'La Haus' => 'email@example.com' }
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*'
+  s.source_files = 'iterable_flutter/Sources/iterable_flutter/**/*.swift'
   s.dependency 'Flutter'
   s.dependency 'Iterable-iOS-SDK', '6.6.4'
   s.platform = :ios, '16.0'

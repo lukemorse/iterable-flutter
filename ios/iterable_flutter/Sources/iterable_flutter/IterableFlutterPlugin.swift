@@ -3,13 +3,13 @@ import UIKit
 import IterableSDK
 import UserNotifications
 
-public class SwiftIterableFlutterPlugin: NSObject, FlutterPlugin, UNUserNotificationCenterDelegate, IterableCustomActionDelegate, IterableURLDelegate {
-   
+public class IterableFlutterPlugin: NSObject, FlutterPlugin, UNUserNotificationCenterDelegate, IterableCustomActionDelegate, IterableURLDelegate {
+
     static var channel: FlutterMethodChannel? = nil
-    
+
     public static func register(with registrar: FlutterPluginRegistrar) {
         channel = FlutterMethodChannel(name: "iterable_flutter", binaryMessenger: registrar.messenger())
-        let instance = SwiftIterableFlutterPlugin()
+        let instance = IterableFlutterPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel!)
         
         registrar.addApplicationDelegate(instance)
@@ -151,8 +151,11 @@ public class SwiftIterableFlutterPlugin: NSObject, FlutterPlugin, UNUserNotifica
             "additionalData": userInfo
         ] as [String : Any]
         
-        SwiftIterableFlutterPlugin.channel?.invokeMethod("openedNotificationHandler", arguments: payload)
-        
+        IterableFlutterPlugin.channel?.invokeMethod("openedNotificationHandler", arguments: payload)
+
     }
-    
+
 }
+
+@available(*, deprecated, renamed: "IterableFlutterPlugin")
+public typealias SwiftIterableFlutterPlugin = IterableFlutterPlugin
